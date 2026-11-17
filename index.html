@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Footing</title>
+<meta name="description" content="Onboarding for small independent hospitality venues. A three-shift plan and a reference card your new starter uses during service.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Six hash-routed views behind a sticky bar; one narrow reading column throughout. */
+:root{
+  --ink:#16211d;
+  --ink-soft:#57665f;
+  --paper:#f5f4f0;
+  --card:#ffffff;
+  --rule:#dedbd3;
+  --green:#1f6b52;
+  --green-soft:#e7f0ec;
+  --clay:#b8562c;
+  --font-display:"Bricolage Grotesque",Georgia,serif;
+  --font-body:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#e9ece9; --ink-soft:#9aa9a2; --paper:#0f1614; --card:#19211f;
+    --rule:#2a3531; --green:#5cc19d; --green-soft:#15291f; --clay:#e08a5c; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e9ece9; --ink-soft:#9aa9a2; --paper:#0f1614; --card:#19211f;
+  --rule:#2a3531; --green:#5cc19d; --green-soft:#15291f; --clay:#e08a5c; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px}
+a{color:var(--green)}
+:focus-visible{outline:3px solid var(--clay);outline-offset:3px;border-radius:3px}
+
+/* ---------- bar ---------- */
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.bar .wrap{display:flex;align-items:center;gap:14px;min-height:60px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.mark{width:26px;height:26px;flex:none}
+.wordmark{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:-.015em}
+nav.links{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+nav.links a{font-size:14px;text-decoration:none;color:var(--ink-soft);padding:5px 9px;border-radius:7px;font-weight:500;white-space:nowrap}
+nav.links a:hover{color:var(--ink);background:var(--green-soft)}
+nav.links a[aria-current="page"]{color:var(--green);background:var(--green-soft)}
+
+/* ---------- views ---------- */
+.view{display:none;padding:44px 0 72px}
+.view.on{display:block}
+
+h1{font-family:var(--font-display);font-weight:700;font-size:clamp(31px,7.2vw,46px);line-height:1.07;letter-spacing:-.025em;margin:0 0 18px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--green)}
+h2{font-family:var(--font-display);font-weight:600;font-size:25px;letter-spacing:-.018em;margin:44px 0 6px;text-wrap:balance}
+h2:first-of-type{margin-top:0}
+h3{font-size:16.5px;font-weight:600;margin:0 0 4px}
+p{margin:0 0 14px}
+.lede{font-size:17.5px;color:var(--ink-soft);max-width:48ch;margin-bottom:26px}
+.sublede{color:var(--ink-soft);margin:0 0 20px;font-size:15px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);font-weight:600;margin:0 0 12px}
+.small{font-size:13px;color:var(--ink-soft)}
+
+.ctas{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:15px;padding:12px 20px;border-radius:9px;border:1.5px solid transparent;cursor:pointer;font-family:var(--font-body)}
+.btn-main{background:var(--green);color:var(--paper)}
+.btn-main:hover{filter:brightness(1.08)}
+.btn-ghost{border-color:var(--rule);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+
+.hero{display:flex;gap:34px;align-items:flex-start;flex-wrap:wrap}
+.hero-copy{flex:1 1 330px;min-width:0}
+.hero-art{flex:0 1 230px;min-width:200px}
+.hero-art svg{width:100%;height:auto;display:block}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden;margin:34px 0 10px}
+.stats div{background:var(--card);padding:19px 14px;text-align:center}
+.stats b{display:block;font-family:var(--font-display);font-weight:700;font-size:27px;line-height:1;color:var(--green);letter-spacing:-.02em}
+.stats span{display:block;margin-top:7px;font-size:12.5px;color:var(--ink-soft);line-height:1.4}
+
+ol.steps{list-style:none;counter-reset:s;margin:0 0 14px;padding:0}
+ol.steps li{counter-increment:s;display:flex;gap:15px;padding:15px 0;border-top:1px solid var(--rule)}
+ol.steps li::before{content:counter(s);flex:none;width:27px;height:27px;border-radius:50%;background:var(--green);color:var(--paper);font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:2px}
+ol.steps p{margin:0;font-size:14.5px;color:var(--ink-soft)}
+
+.card{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:20px 22px;margin:16px 0}
+.card p:last-child{margin-bottom:0}
+.card.accent{border-left:4px solid var(--green)}
+.card.warn{border-left:4px solid var(--clay)}
+.big{font-family:var(--font-display);font-weight:700;font-size:33px;letter-spacing:-.02em;line-height:1}
+.unit{font-size:14px;color:var(--ink-soft);margin-left:5px;font-weight:400}
+
+blockquote{margin:16px 0;padding:0 0 0 18px;border-left:3px solid var(--clay)}
+blockquote p{font-family:var(--font-display);font-weight:500;font-size:18.5px;line-height:1.45;margin:0 0 7px;letter-spacing:-.01em}
+blockquote cite{font-style:normal;font-size:13.5px;color:var(--ink-soft)}
+
+.tablewrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums;min-width:420px}
+th,td{text-align:left;padding:9px 14px 9px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+tr.us td{font-weight:600;color:var(--green)}
+td.n{white-space:nowrap;font-weight:600}
+
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:18px 0}
+.person{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:17px 18px}
+.avatar{width:72px;height:72px;border-radius:50%;background:var(--green-soft);color:var(--green);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:21px;margin-bottom:12px;overflow:hidden;flex:none}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.person h3{margin-bottom:2px}
+.role{font-size:12.5px;color:var(--green);font-weight:600;margin:0 0 7px}
+.person p{font-size:13.5px;color:var(--ink-soft);margin:0}
+
+dl.faq{margin:16px 0}
+dl.faq dt{font-weight:600;font-size:15.5px;margin-top:16px}
+dl.faq dd{margin:4px 0 0;color:var(--ink-soft);font-size:14.5px}
+
+.copyrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0 0}
+.copyrow code{font-family:var(--font-body);font-size:15px;background:var(--green-soft);color:var(--ink);padding:7px 12px;border-radius:7px}
+.ph{border-bottom:1.5px dashed var(--clay);color:var(--clay)}
+.mini{background:transparent;border:1.5px solid var(--rule);color:var(--ink-soft);font-size:13px;font-weight:600;padding:6px 11px;border-radius:7px;cursor:pointer;font-family:var(--font-body)}
+.mini:hover{border-color:var(--green);color:var(--green)}
+
+footer{border-top:1px solid var(--rule);padding:26px 0 54px;margin-top:10px}
+footer small{display:block;font-size:12.5px;color:var(--ink-soft);line-height:1.65}
+footer .flinks{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+footer .flinks a{font-size:13.5px;text-decoration:none;color:var(--ink-soft)}
+footer .flinks a:hover{color:var(--green)}
+
+@media (max-width:470px){
+  .stats{grid-template-columns:1fr}
+  .hero-art{display:none}
+  nav.links{margin-left:0;width:100%}
+  nav.links a{padding:5px 7px;font-size:13.5px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap">
+    <a class="brand" href="#home">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="1" y="1" width="22" height="22" rx="6" fill="var(--green)"/>
+        <path d="M8 17V8.5A1.5 1.5 0 0 1 9.5 7H16" stroke="var(--paper)" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+        <path d="M8 12.2h5.2" stroke="var(--paper)" stroke-width="2.1" stroke-linecap="round"/>
+      </svg>
+      <span class="wordmark">Footing</span>
+    </a>
+    <nav class="links" aria-label="Main">
+      <a href="#home" data-v="home">Home</a>
+      <a href="#product" data-v="product">What we do</a>
+      <a href="#evidence" data-v="evidence">Evidence</a>
+      <a href="#team" data-v="team">Team</a>
+      <a href="#investors" data-v="investors">Investors</a>
+      <a href="#contact" data-v="contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<section class="view on" id="view-home" aria-labelledby="home-h">
+  <div class="wrap">
+    <div class="hero">
+      <div class="hero-copy">
+        <h1 id="home-h">New staff who can <em>find the answer themselves</em>.</h1>
+        <p class="lede">We turn what your venue already knows into a three-shift plan and a reference card your new starter uses during service — so you stop explaining the same ten things to every new face.</p>
+        <p class="small" style="margin-bottom:18px">Small independent cafés, restaurants and bars. Starting in the Brainport region, built for the Netherlands.</p>
+        <div class="ctas">
+          <a class="btn btn-main" href="#contact">Book a 20-minute intake</a>
+          <a class="btn btn-ghost" href="#evidence">See the research</a>
+        </div>
+        <p class="small">Free first version for venues in the Eindhoven region.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 200 250">
+          <rect x="14" y="18" width="172" height="214" rx="12" fill="var(--card)" stroke="var(--rule)" stroke-width="2"/>
+          <rect x="14" y="18" width="172" height="34" rx="12" fill="var(--green)"/>
+          <rect x="14" y="40" width="172" height="12" fill="var(--green)"/>
+          <rect x="28" y="30" width="62" height="9" rx="4.5" fill="var(--paper)" opacity=".92"/>
+          <rect x="28" y="68" width="144" height="7" rx="3.5" fill="var(--rule)"/>
+          <rect x="28" y="84" width="112" height="7" rx="3.5" fill="var(--rule)"/>
+          <rect x="28" y="108" width="68" height="46" rx="6" fill="var(--green-soft)" stroke="var(--green)" stroke-width="1.5"/>
+          <rect x="104" y="108" width="68" height="46" rx="6" fill="var(--green-soft)" stroke="var(--green)" stroke-width="1.5"/>
+          <text x="62" y="137" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="17" font-weight="600" fill="var(--green)">20</text>
+          <text x="138" y="137" text-anchor="middle" font-family="Public Sans, sans-serif" font-size="17" font-weight="600" fill="var(--green)">21</text>
+          <rect x="28" y="170" width="144" height="7" rx="3.5" fill="var(--rule)"/>
+          <rect x="28" y="186" width="96" height="7" rx="3.5" fill="var(--rule)"/>
+          <rect x="28" y="206" width="54" height="10" rx="5" fill="var(--clay)" opacity=".8"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div><b>38%</b><span>less time spent on onboarding</span></div>
+      <div><b>64%</b><span>fewer questions by the third shift</span></div>
+      <div><b>3 of 3</b><span>venues stopped their most costly mistake</span></div>
+    </div>
+    <p class="small">Measured in three independent venues — a brasserie, a coffee bar and a cocktail bar — against each manager's own estimate of what onboarding normally costs them.</p>
+
+    <h2>How it works</h2>
+    <p class="sublede">Three visits. About two hours of your time in total.</p>
+    <ol class="steps">
+      <li><div><h3>We listen</h3><p>Your floor plan, your table numbers, the ten things every new person gets wrong here, your allergens. Your words, not ours.</p></div></li>
+      <li><div><h3>You get a plan and a card</h3><p>One page for you and the buddy. A laminated card your new starter keeps on them, and the same thing on their phone.</p></div></li>
+      <li><div><h3>We keep it right</h3><p>New menu, new floor, new routine — we update it. A guide nobody maintains stops being used within a season.</p></div></li>
+    </ol>
+
+    <h2>What it costs</h2>
+    <div class="card">
+      <div><span class="big">€895</span><span class="unit">once, to build it</span></div>
+      <p style="margin-top:12px">Then €180, €420 or €780 a year to keep it current, depending on how often you hire. Replacing one service employee costs a venue around €15,000 — this is a fraction of losing one.</p>
+    </div>
+
+    <blockquote>
+      <p>“No milk mix-ups at all — that's a first. And the buddy actually let her do things, because the plan said so.”</p>
+      <cite>Owner, coffee bar, Eindhoven centre</cite>
+    </blockquote>
+
+    <div class="ctas" style="margin-top:28px">
+      <a class="btn btn-main" href="#contact">Book a 20-minute intake</a>
+      <a class="btn btn-ghost" href="#evidence">See the research</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCT ============ -->
+<section class="view" id="view-product" aria-labelledby="product-h">
+  <div class="wrap">
+    <p class="eyebrow">What we do</p>
+    <h1 id="product-h">The information isn't missing. It arrives at the wrong moment.</h1>
+    <p class="lede">Every venue we studied already had something written down. None of it reaches the person while they are on the floor.</p>
+
+    <h2>The problem</h2>
+    <p>Eight in eleven managers we surveyed lose more than an hour a week re-explaining the same things. All eleven said it worsens as turnover rises — and Dutch hospitality turns over about 40% of its staff a year.</p>
+    <p>One pilot venue had a printed booklet and a folder of documents online. Drinks still went to the wrong table. Another keeps no material at all and puts a colleague beside every newcomer instead.</p>
+    <div class="card accent">
+      <p><strong>In both cases the knowledge is carried by a person, in the moment, on the floor.</strong> That is the thing we replace — not the handbook.</p>
+    </div>
+
+    <h2>What you get</h2>
+    <ol class="steps">
+      <li><div><h3>A three-shift plan</h3><p>What the new starter learns on shift one, two and three, so nobody teaches everything on the first night.</p></div></li>
+      <li><div><h3>A reference set built from your venue</h3><p>Your table numbers, sections, allergens and signature items. Laminated for an apron or a workstation, and on their phone behind a QR code.</p></div></li>
+      <li><div><h3>An annual update</h3><p>Menus change, floors change. We revise, reprint and republish so the material does not quietly rot.</p></div></li>
+    </ol>
+
+    <h2>Why not the software you've seen</h2>
+    <p class="sublede">Good products. All of them solve a different moment.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Option</th><th>What it offers</th><th>When it works</th></tr></thead>
+        <tbody>
+          <tr><td>eitje</td><td>Knowledge centre, onboarding paths, quizzes</td><td>Before the shift</td></tr>
+          <tr><td>Typsy</td><td>Video training library</td><td>Before the shift</td></tr>
+          <tr><td>Trainual</td><td>Process documentation and training</td><td>Before the shift</td></tr>
+          <tr><td>A colleague</td><td>Answers anything, instantly</td><td>During the shift, at the cost of their own</td></tr>
+          <tr class="us"><td>Footing</td><td>Your venue's own content, in their hand</td><td>During the shift</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">Prices and features checked October 2026.</p>
+
+    <h2>What we are not</h2>
+    <p>Not a training platform, and not trying to become one. No logins, no courses, no dashboard. A person comes to your venue, listens, and leaves you something your new starter can hold.</p>
+
+    <div class="ctas" style="margin-top:30px">
+      <a class="btn btn-main" href="#contact">Book a 20-minute intake</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVIDENCE ============ -->
+<section class="view" id="view-evidence" aria-labelledby="evidence-h">
+  <div class="wrap">
+    <p class="eyebrow">Evidence</p>
+    <h1 id="evidence-h">We didn't guess. We ran it in three real venues.</h1>
+    <p class="lede">Before we asked anyone to pay for this, we put it into three working venues and measured what happened.</p>
+
+    <h2>What we did</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Method</th><th>Scale</th><th>What it told us</th></tr></thead>
+        <tbody>
+          <tr><td>Manager interviews</td><td class="n">2, recorded</td><td>The knowledge is carried by a person, not by material</td></tr>
+          <tr><td>Surveys</td><td class="n">16, 11, 11, 8</td><td>Size of the time cost, appetite for the solution, pricing model</td></tr>
+          <tr><td>Desk research</td><td class="n">13 sources</td><td>Every competing product works before the shift, not during</td></tr>
+          <tr><td>Field pilots</td><td class="n">3 venues × 3 shifts</td><td>What actually happens when a venue uses it</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>The pilot</h2>
+    <p class="sublede">One new part-time employee per venue, across their first three shifts. Each manager gave a baseline before we started; manager and employee both logged every shift.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Venue</th><th>Their own estimate</th><th>Measured</th><th>Change</th></tr></thead>
+        <tbody>
+          <tr><td>Brasserie, ~70 seats</td><td class="n">6 h</td><td class="n">3.7 h</td><td class="n" style="color:var(--green)">−39%</td></tr>
+          <tr><td>Coffee bar, ~36 seats</td><td class="n">5 h</td><td class="n">3.2 h</td><td class="n" style="color:var(--green)">−37%</td></tr>
+          <tr><td>Cocktail bar, ~90 seats</td><td class="n">8 h</td><td class="n">4.8 h</td><td class="n" style="color:var(--green)">−40%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Requests for help fell from 61 on the first shift to 22 on the third. In every venue the mistake the manager had named as most costly — food to the wrong table, the wrong milk, the wrong portion — stopped happening.</p>
+
+    <div class="card accent">
+      <p style="margin-bottom:0">Every venue kept the material after the pilot, and two have already asked for it again for staff starting in the next two months.</p>
+    </div>
+
+    <div class="ctas" style="margin-top:28px">
+      <a class="btn btn-main" href="#contact">Book a 20-minute intake</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="view" id="view-team" aria-labelledby="team-h">
+  <div class="wrap">
+    <p class="eyebrow">Team</p>
+    <h1 id="team-h">Six people, and one rule about who checks whose work.</h1>
+    <p class="lede">International Business students at Fontys in Eindhoven. Roles came from each person's entrepreneurial profile, not from who volunteered first.</p>
+
+    <div class="people">
+      <div class="person"><div class="avatar"><img src="team/soultana.jpg" alt="" width="440" height="440" loading="lazy"></div><h3>Soultana Bouki</h3><p class="role">Project Coordinator</p><p>Planning, deadlines, documentation, client intake. The strongest organising profile in the team.</p></div>
+      <div class="person"><div class="avatar"><img src="team/ruben.jpg" alt="" width="440" height="440" loading="lazy"></div><h3>Ruben Leeuwarden</h3><p class="role">Team Lead</p><p>Direction, decisions, market research. Comfortable deciding under uncertainty.</p></div>
+      <div class="person"><div class="avatar"><img src="team/julia.jpg" alt="" width="440" height="440" loading="lazy"></div><h3>Julia Hoed</h3><p class="role">Finance Lead</p><p>Pricing, cost structure, break-even, cash planning.</p></div>
+      <div class="person"><div class="avatar"><img src="team/marouan.jpg" alt="" width="440" height="440" loading="lazy"></div><h3>Marouan Aghadar</h3><p class="role">Sales &amp; Communication</p><p>Venue acquisition and channel testing. Our growth depends on walking into venues; this is his strongest trait by some distance.</p></div>
+      <div class="person"><div class="avatar"><img src="team/yeasin.jpg" alt="" width="440" height="440" loading="lazy"></div><h3>Md Yeasin Hossain</h3><p class="role">Innovation &amp; Concept</p><p>Product design and experiment design. Built the instruments the field test ran on.</p></div>
+      <div class="person"><div class="avatar"><img src="team/laiz.jpg" alt="" width="440" height="440" loading="lazy"></div><h3>Laiz Ammary Hourani</h3><p class="role">Quality &amp; Documentation</p><p>Reviews deliverables, checks sources, keeps material current.</p></div>
+    </div>
+
+    <h2>How we work</h2>
+    <p>Nobody here has a specialist-dominant profile, so quality control is a rule rather than a person: <strong>whoever did not write something reviews it before it goes out.</strong> Planning scores low in three of six profiles, which is why coordination sits separately from leadership.</p>
+  </div>
+</section>
+
+<!-- ============ INVESTORS ============ -->
+<section class="view" id="view-investors" aria-labelledby="investors-h">
+  <div class="wrap">
+    <p class="eyebrow">For investors</p>
+    <h1 id="investors-h">Small, proven, and priced on real costs.</h1>
+    <p class="lede">A service business with validated demand, a tested product and honest margins. Brainport is where we start, not where the market ends.</p>
+
+    <h2>Market</h2>
+    <div class="tablewrap">
+      <table>
+        <tbody>
+          <tr><td class="n">40,000</td><td>Eating and drinking venues in the Netherlands</td></tr>
+          <tr><td class="n">25,200</td><td>Independent, employing part-time staff — our serviceable market</td></tr>
+          <tr class="us"><td class="n">8 &rarr; 20</td><td>Venues in year one, cumulative by year two</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Unit economics</h2>
+    <div class="tablewrap">
+      <table>
+        <tbody>
+          <tr><td>Build price per venue</td><td class="n">€895</td></tr>
+          <tr><td>Cost price (20 h delivery and acquisition, at loaded wage)</td><td class="n">€531</td></tr>
+          <tr class="us"><td>Contribution per build</td><td class="n">€364</td></tr>
+          <tr><td>Maintenance per year, by hiring frequency</td><td class="n">€180 / €420 / €780</td></tr>
+          <tr class="us"><td>Break-even</td><td class="n">3.7 venues</td></tr>
+          <tr><td>Profit, year one &rarr; year two, after paying every team hour</td><td class="n">€1,546 &rarr; €5,236</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">Our own hours are costed at minimum wage plus holiday allowance and employer charges, so these are profits after labour. Below roughly €700 a build the service loses money, which is how the price was set.</p>
+
+    <h2>What we're asking for</h2>
+    <div class="card accent">
+      <p><strong>Not money.</strong> Year one is funded by the team and breaks even on the fourth venue.</p>
+      <p style="margin-bottom:0">Introductions: to venue owners, and to multi-site operators. A ten-venue group hiring a hundred people a year is where this becomes a different business.</p>
+    </div>
+
+    <p class="small" style="margin-top:22px">One thing we have not tested: whether the service reduces staff turnover. Replacing one service employee costs a Dutch venue about €15,000 (ABN AMRO), but our pilots measured time and errors, not retention. We would rather say so than price on it.</p>
+
+    <div class="ctas" style="margin-top:26px">
+      <a class="btn btn-main" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="view" id="view-contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h1 id="contact-h">Twenty minutes, in your venue, at a quiet hour.</h1>
+    <p class="lede">That is the whole first step. We come to you, we ask questions, and you get the first version free.</p>
+
+    <div class="card">
+      <h3>Email</h3>
+      <div class="copyrow">
+        <code id="mail"><a href="mailto:hello@footing.nl" style="color:inherit;text-decoration:none">hello@footing.nl</a></code>
+        <button class="mini" type="button" data-copy="mail">Copy</button>
+      </div>
+      <h3 style="margin-top:20px">Phone</h3>
+      <div class="copyrow">
+        <code id="tel"><a href="tel:+31618889471" style="color:inherit;text-decoration:none">+31 6 18 88 94 71</a></code>
+        <button class="mini" type="button" data-copy="tel">Copy</button>
+      </div>
+      <p class="small" style="margin-top:18px;margin-bottom:0">Based in Eindhoven. We visit venues across the Brainport region.</p>
+    </div>
+
+    <h2>Before you ask</h2>
+    <dl class="faq">
+      <dt>How much of my time does this take?</dt>
+      <dd>Twenty minutes for the intake, and a few minutes per shift during the first three shifts if you want the measurement. Nothing else.</dd>
+      <dt>What if it doesn't work in my venue?</dt>
+      <dd>The first version is free and you decide afterwards. We would rather have an honest no than a venue that paid once and never used it.</dd>
+      <dt>Do my staff need to download anything?</dt>
+      <dd>No. The card is physical and the phone version is a web page behind a QR code. No accounts, no app, no logins.</dd>
+      <dt>Is my information shared with other venues?</dt>
+      <dd>Never. Your floor plan, routines and recipes are yours, and we delete our notes on request.</dd>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="flinks">
+      <a href="#home">Home</a><a href="#product">What we do</a><a href="#evidence">Evidence</a><a href="#team">Team</a><a href="#investors">Investors</a><a href="#contact">Contact</a>
+    </div>
+    <small>Footing · IB3D Group 2 · Fontys University of Applied Sciences, Eindhoven. A student venture. The figures on this site come from our own field research in autumn 2026, and we are happy to show you the notes behind any of them.</small>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var views = ['home','product','evidence','team','investors','contact'];
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.links a'));
+
+  function show(name){
+    if (views.indexOf(name) === -1) name = 'home';
+    views.forEach(function(v){
+      var el = document.getElementById('view-' + v);
+      if (el) el.classList.toggle('on', v === name);
+    });
+    links.forEach(function(a){
+      if (a.getAttribute('data-v') === name) a.setAttribute('aria-current','page');
+      else a.removeAttribute('aria-current');
+    });
+    var h = document.querySelector('#view-' + name + ' h1');
+    if (h) { h.setAttribute('tabindex','-1'); }
+    window.scrollTo(0, 0);
+  }
+
+  function fromHash(){
+    return (location.hash || '#home').replace(/^#/, '');
+  }
+
+  window.addEventListener('hashchange', function(){ show(fromHash()); });
+  show(fromHash());
+
+  document.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('[data-copy]') : null;
+    if (!b) return;
+    var el = document.getElementById(b.getAttribute('data-copy'));
+    if (!el) return;
+    var txt = el.textContent.trim();
+    try {
+      navigator.clipboard.writeText(txt).then(function(){
+        var old = b.textContent; b.textContent = 'Copied';
+        setTimeout(function(){ b.textContent = old; }, 1400);
+      }, function(){
+        var old = b.textContent; b.textContent = 'Select it';
+        setTimeout(function(){ b.textContent = old; }, 1400);
+      });
+    } catch (err) {
+      var o = b.textContent; b.textContent = 'Select it';
+      setTimeout(function(){ b.textContent = o; }, 1400);
+    }
+  });
+})();
+</script>
+</body>
+</html>
